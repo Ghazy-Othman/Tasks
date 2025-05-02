@@ -1,0 +1,422 @@
+name: Tasks
+description: 'All tasks actions : show,create,update and delete.'
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{user_id}/tasks'
+    metadata:
+      groupName: Tasks
+      groupDescription: 'All tasks actions : show,create,update and delete.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get user tasks'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'User uuid'
+        required: true
+        example: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+    queryParameters:
+      priority:
+        name: priority
+        description: 'Get tasks with specific priority'
+        required: false
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      priorityFrom:
+        name: priorityFrom
+        description: 'Get tasks with priorities greater than or equal to this value'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      priorityTo:
+        name: priorityTo
+        description: 'Get tasks with priorities smaller than or equal to this value'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      dateFrom:
+        name: dateFrom
+        description: 'Get tasks with date later than or equal to this date'
+        required: false
+        example: 20/5/2025
+        type: date
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      dateTo:
+        name: dateTo
+        description: 'Get tasks with priorities earlier than or equal to this date'
+        required: false
+        example: 1/7/2025
+        type: date
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sortBy:
+        name: sortBy
+        description: 'Sort result by this value. Accepted values : priority , date'
+        required: false
+        example: priority
+        type: enum
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sortOrder:
+        name: sortOrder
+        description: 'Sort result type. Accepted values : asc , desc'
+        required: false
+        example: asc
+        type: enum
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      priority: 5
+      priorityFrom: 1
+      priorityTo: 10
+      dateFrom: 20/5/2025
+      dateTo: 1/7/2025
+      sortBy: priority
+      sortOrder: asc
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{user_id}/tasks'
+    metadata:
+      groupName: Tasks
+      groupDescription: 'All tasks actions : show,create,update and delete.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create task'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'User uuid'
+        required: true
+        example: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Task title'
+        required: true
+        example: 'new taks'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      content:
+        name: content
+        description: 'Task content'
+        required: true
+        example: 'This is task content (description)'
+        type: text
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: 'Task priority'
+        required: true
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: 'new taks'
+      content: 'This is task content (description)'
+      priority: 5
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/users/{user_id}/tasks/{task_id}'
+    metadata:
+      groupName: Tasks
+      groupDescription: 'All tasks actions : show,create,update and delete.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update task'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'User uuid'
+        required: true
+        example: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      task_id:
+        name: task_id
+        description: 'Task id'
+        required: true
+        example: '10'
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+      task_id: '10'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Task title'
+        required: false
+        example: 'new taks'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      content:
+        name: content
+        description: 'Task content'
+        required: false
+        example: 'This is task content (description)'
+        type: text
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: 'Task priority'
+        required: false
+        example: 5
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: 'new taks'
+      content: 'This is task content (description)'
+      priority: 5
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{user_id}/tasks/{task_id}'
+    metadata:
+      groupName: Tasks
+      groupDescription: 'All tasks actions : show,create,update and delete.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show task'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'User uuid'
+        required: true
+        example: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+        type: uuid
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      task_id:
+        name: task_id
+        description: 'Task id'
+        required: true
+        example: '10'
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+      task_id: '10'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/users/{user_id}/tasks/{task_id}'
+    metadata:
+      groupName: Tasks
+      groupDescription: 'All tasks actions : show,create,update and delete.'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete task'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'User uuid'
+        required: true
+        example: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      task_id:
+        name: task_id
+        description: 'Task id'
+        required: true
+        example: '10'
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 01968c0f-6593-71a6-a1e4-9ff2714fe9ea
+      task_id: '10'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3V5EgbkvZcDPa166h8fd4ae'
+    controller: null
+    method: null
+    route: null
+    custom: []
