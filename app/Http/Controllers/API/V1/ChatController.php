@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ChatResource;
 use App\Http\Responses\CustomResponse;
 use App\Models\Chat;
+use App\Models\Task;
 use App\Models\User;
 use App\Services\ChatBotService;
 use Illuminate\Http\Request;
@@ -37,8 +38,8 @@ class ChatController extends Controller
     {
         $this->chatBotService = $chatBotService;
         $this->MSGS = [
-            "INIT_MSG" => "Read my tasks. Each one is encoded as json with attributes :\n 1- Title\n2- Content(the description of task)\n3- Priority(Lower number is higher priority)\n4- Created at(Time when the task had been created)\nI will ask you about those tasks.",
-            "SUG_PRIO_MSG" => "Read all my tasks and suggest new priorities for them.\nReturn result as HTML text so i can view it in my website"
+            "INIT_MSG" => "Read this tasks, each one was parsed as JSON with attributes : title, description, status,content and the date it created at.Ignore message in case there are to tasks",
+            "SUG_PRIO_MSG" => "Suggest new priorities if needed for my tasks (If exist any) depending on their importance." ,
         ];
     }
 
@@ -52,7 +53,7 @@ class ChatController extends Controller
     #[UrlParam('user_id', "string", "User uuid", example: "01968c0f-6593-71a6-a1e4-9ff2714fe9ea")]
     public function show($user_id): CustomResponse
     {
-        $user = User::find($user_id) ;
+        $user = User::find($user_id);
         $chat = Chat::firstOrCreate(['user_id' => $user->user_id], ['title' => 'New chat.']);
 
         return CustomResponse::ok(new ChatResource($chat));
@@ -70,7 +71,7 @@ class ChatController extends Controller
     #[BodyParam('content', 'string', "This is user message for AI", true, "Hello AI, I am Dev Ghazy")]
     public function sendMessage($user_id, Request $request)
     {
-        $user = User::find($user_id) ;
+        $user = User::find($user_id);
         //
         $chat = Chat::firstOrCreate(['user_id' => $user->user_id], ['title' => 'New chat.']);
 
@@ -90,11 +91,15 @@ class ChatController extends Controller
      * @param \App\Models\User $user
      * @return array{content: bool|string, role: string[]}
      */
-    public function prefixContent(User $user): array
+    public function prefixContent(User $user)
     {
         //
-        $tasks = $user->tasks;
         $prefix_content = [];
+        $tasks = Task::where('user_id' , $user->user_id)->get();
+        if(!$tasks->count()) {
+            return $prefix_content ; 
+        }
+        
         $prefix_content[] = [
             "role" => "user",
             "content" => $this->MSGS["INIT_MSG"]
@@ -107,6 +112,7 @@ class ChatController extends Controller
                     'title' => $task->title,
                     'content' => $task->content,
                     'priority' => $task->priority,
+                    'status' => $task->status,
                     'created_at' => $task->created_at
                 ])
             ];
@@ -125,7 +131,7 @@ class ChatController extends Controller
     #[UrlParam('user_id', "string", "User uuid", example: "01968c0f-6593-71a6-a1e4-9ff2714fe9ea")]
     public function deleteChat($user_id): CustomResponse
     {
-        $user = User::find($user_id) ; 
+        $user = User::find($user_id);
         $chat = Chat::where('user_id', $user->user_id)->first();
 
         $chat->delete();

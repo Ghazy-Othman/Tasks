@@ -68,13 +68,15 @@ class ChatBotService
             'model' => $this->MODEL,
             'messages' => $messages
         ];
+        
 
         $body = json_encode(value: $body, flags: true);
+
 
         //
         $response = $this->client->request("POST", $this->config['base_url'], [
             'headers' => $headers,
-            'body' => $body
+            'body' => $body ,
         ]);
 
         //
@@ -83,7 +85,7 @@ class ChatBotService
             'role' => 'user',
             'content' => $content
         ]);
-
+        
         //  
         $bot_message = $this->getBotMessage(
             response: json_decode(json: $response->getBody(), associative: true)['choices'][0],
