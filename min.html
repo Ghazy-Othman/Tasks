@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tasks-profile</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/tasgil.js" defer></script>
+  <script type="module" src="./js/min.js"></script>
+</head>
+
+<body>
+
+
+  <div id="sidebar">
+    <div class="sidebar-header">
+      
+    </div>
+    <ul class="sidebar-menu">
+      <ul>
+        <li><button onclick="showProfile()">الملف الشخصي</button></li>
+        <li><button onclick="showSettings()">الإعدادات</button></li>
+        <li><button onclick="window.location.href='test.html'">المهام</button></li>
+        <li><button onclick="goToChatPage()">البوت الذكي</button></li>
+        <li><button onclick="logout()">تسجيل الخروج</button></li>
+      </ul>
+    </ul>
+  </div>
+
+
+  <div class="content">
+
+
+    <div id="profile-container" class="container">
+      <div class="user-profile">
+        <img id="profile-image" src=""  class="user-image" style="display: none;">
+        <h2 class="user-name" id="user-name"></h2>
+        <p id="today-date"></p>
+        <p>عدد مهام اليوم: <span id="task-count">0</span></p>
+      </div>
+      <div class="my-existing-container">
+        <img src="./assets/empty.svg">
+      </div>
+    </div>
+
+    <div id="settings-container" class="container" style="display: none;">
+      <h3>الإعدادات</h3>
+
+      <div class="image-settings">
+        <label>صورة الملف الشخصي:</label><br>
+        <input type="file" id="profile-image-input" accept="image/*">
+        <button type="button" id="add-image" class="delete-image-btn" onclick="addImage()">أضف الصورة</button>
+        <button type="button" id="delete-image" class="delete-image-btn" style="display: none;">حذف الصورة</button>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button id="change-password-button" onclick="changePassword()">تغيير كلمة المرور</button>
+      </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قائمة المهام-Tasks</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/tasgil.js" defer></script>
+  <script type="module" src="./js/task-editor.js"></script>
+</head>
+
+<body id="tasks-page">
+
+  <div id="sidebar">
+    <div class="sidebar-header">
+      
+    </div>
+    <ul class="sidebar-menu">
+      <li><button onclick="window.location.href='min.html'">الملف الشخصي</button></li>
+      
+      <li><button onclick="goToChatPage()">البوت الذكي</button></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div class="add-task">
+      <input type="text" id="task-input" placeholder="أضف مهمة جديدة...">
+      <input type="date" id="task-date">
+      <select id="task-priority">
+        <option value="">الأولوية</option>
+        <option value="عالية">عالية</option>
+        <option value="متوسطة">متوسطة</option>
+        <option value="منخفضة">منخفضة</option>
+      </select>
+      <textarea id="task-description" placeholder="أضف وصفًا للمهمة"></textarea>
+      <button class="addbutton">
+        <i class="fa fa-plus-circle"></i>
+      </button>
+      <button class="updateButton" style="display: none;">
+        update
+      </button>
+    </div>
+  </div>
+
+  <div class="tasks-container">
+    <h2>مهامك</h2>
+    <ul id="tasks-list">
+
+
+    </ul>
+  </div>
+
+  <script>
+    console.log("تم تحميل الجافا سكريبت!");
+    function showSettings() {
+      alert('سيتم فتح إعدادات المستخدم');
+    }
+  </script>
+
+</body>
+
+</html>
